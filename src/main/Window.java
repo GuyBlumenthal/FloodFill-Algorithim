@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
@@ -32,6 +33,11 @@ public class Window extends JFrame {
 	@Override
 	public synchronized void addMouseListener(MouseListener l) {
 		panel.addMouseListener(l);
+	}
+	
+	@Override
+	public synchronized void addMouseMotionListener(MouseMotionListener l) {
+		panel.addMouseMotionListener(l);
 	}
 
 	@Override

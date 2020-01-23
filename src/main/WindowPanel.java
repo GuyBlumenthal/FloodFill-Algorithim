@@ -17,6 +17,7 @@ public class WindowPanel extends JPanel implements KeyListener, MouseListener {
 	
 	public WindowPanel() {
 		addMouseListener(this);
+		addKeyListener(this);
 		key = ' ';
 	}
 
@@ -46,7 +47,10 @@ public class WindowPanel extends JPanel implements KeyListener, MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
+		if (SwingUtilities.isLeftMouseButton(e) && key == 'c') {
+			Main.clearAll();
+		}
 	}
 
 	@Override

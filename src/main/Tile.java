@@ -37,8 +37,14 @@ public class Tile implements MouseListener, MouseMotionListener {
 		this.tileStyle = TileStyle.Filled;
 	}
 	
-	public boolean isFilled () {
+	public boolean isBlocked () {
 		return !(this.tileStyle == TileStyle.DefaultTile);
+	}
+	
+	public void removeFill () {
+		if (this.tileStyle == TileStyle.Filled) {
+			this.tileStyle = TileStyle.DefaultTile;
+		}
 	}
 	
 	private enum TileStyle {
@@ -68,10 +74,13 @@ public class Tile implements MouseListener, MouseMotionListener {
 			if (getHitbox().contains(e.getPoint())) {
 				this.tileStyle = TileStyle.DefaultTile;
 			}
-		} else if (SwingUtilities.isMiddleMouseButton(e)) {
+		} 
+		if (SwingUtilities.isMiddleMouseButton(e)) {
 			if (getHitbox().contains(e.getPoint())) {
 				Main.commenceFloodFill(this);
 			}
+		} else {
+			Main.clearFill();
 		}
 	}
 
@@ -101,6 +110,9 @@ public class Tile implements MouseListener, MouseMotionListener {
 			if (getHitbox().contains(e.getPoint())) {
 				this.tileStyle = TileStyle.DefaultTile;
 			}
+		}
+		if (!SwingUtilities.isMiddleMouseButton(e)) {
+			Main.clearFill();
 		}
 	}
 

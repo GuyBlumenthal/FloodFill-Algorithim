@@ -92,6 +92,7 @@ public class Main {
 		ArrayList<Tile> neighbours = new ArrayList<Tile>();
 		
 		if (t.x > 0) {
+			System.out.println("Hi");
 			addTileToFill(grid.get(t.x - 1).get(t.y), neighbours);
 		}
 		
@@ -112,9 +113,21 @@ public class Main {
 	}
 	
 	public static void addTileToFill (Tile t, ArrayList<Tile> n) {
-		if (!t.isFilled()) {
+		if (!t.isBlocked()) {
 			n.add(t);
 		}
+	}
+	
+	public static void clearFill () {
+		for (ArrayList<Tile> list : grid) {
+			for (Tile t : list) {
+				t.removeFill();
+			}
+		}
+	}
+	
+	public static void clearAll () {
+		grid = new ArrayList<ArrayList<Tile>>();
 	}
 	
 	public static void display (Graphics2D g2d) {
